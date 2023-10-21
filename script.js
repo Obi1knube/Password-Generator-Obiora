@@ -1,48 +1,64 @@
+//Generate Passwords
+function generatePassword(userLength,  includeLowercaseChars,includeUppercaseChars,includeNumericChars,includeSpecialChars ){
+var includeLowercaseChars = "abcdefghijklmnopqrstuvwxyz";
+var includeUppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var includeNumericChars = "0123456789";
+var includeSpecialChars = "!@#$%^&*()_+~|}{[]:;?><./-,=";
 
-function generatePassword(){
+var password="";
+var availableChars="";
 
-      // 1/ ask me what length password I want
-      // use prompt to get password length
-    var userLength = prompt('What is the length of your password?')
-  
-     // check to make sure number is between 8-128 
+// 1/ ask me what length password I want
+    // use prompt to get password length
+
+   userLength = prompt('What is the length of your password?')
+
+      // check to make sure number is between 8-128 
     if (userLength < 8 || userLength > 128){
       alert('Please use a length between 8 and 128')
-      return
+      return(userLength);
     }
-    console.log(userLength)
-  // next section
-  //** */ 2/ do you want special characters?
-  //use confirm
-  var option1
-      if (confirm("Press ok to include special characters")==true){
-        option1= "Special character will be included";
-  
-        return
-      }else{
-        option1= "No special character has been selected";
-        return
-      }
-    
+    console.log(userLength);
+
+        //** */ 2/ do you want special characters?
+ 
+  includeSpecialChars= confirm("ACCEPT: to add special characters to your password")
+  if (includeSpecialChars===true){
+    availableChars+=includeSpecialChars;
+    return;
   }
-  
-  generatePassword();
-  
-  //** */ 3/ do you want numbers?
-  //use confirm
-  
-  //**/ 4/ do you want upper
-  //use confirm
-  
-  //** */ 5/ lower case letters
-  //use confirm
-  
-  // ** */6/ generate password
-    // create array that holds users preferences 
-    // look into Maths.Random to randomize selection
-    // loop to select a random character from the array. 'length of password' iterations
-  
-  // ** */7/ display it on html provided
+       //**/ 3/ do you want numbers?
+
+  includeNumericChars= confirm("ACCEPT: to add numbers to your password")
+    if (includeNumericChars===true){
+      availableChars+= includeNumericChars;
+      return;
+    }
+
+      //**/ 4/ do you want upper
+      includeUppercaseChars= confirm("ACCEPT: to add uppercase characters to your password")
+      if (includeUppercaseChars===true){
+        availableChars+= includeUppercaseChars;
+        return;
+      }
+   //** */ 5/ lower case letters
+   includeLowercaseChars= confirm("ACCEPT: to add Lowercase characters to your password")
+   if (includeLowercaseChars===true){
+     availableChars+= includeLowercaseChars;
+     return;  
+    }
+    // ** */6/ generate password
+    for (i=0;i<userLength;i++){
+      var randomIndex = Math.floor(Math.random()*availableChars.u);
+        // create array that holds users preferences 
+      password+=availableChars[randomIndex];
+    }
+    return password;
+   
+}
+generatePassword(password);    
+
+       // **7/ display it on html provided
   
   var generateBtn = document.querySelector("#generate");
   
