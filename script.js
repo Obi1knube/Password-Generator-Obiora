@@ -11,7 +11,7 @@ var availableChars="";
 // 1/ ask me what length password I want
     // use prompt to get password length
 
-   userLength = prompt('What is the length of your password?')
+   var userLength = prompt('What is the length of your password?')
 
       // check to make sure number is between 8-128 
     if (userLength < 8 || userLength > 128){
@@ -22,39 +22,45 @@ var availableChars="";
 
         //** */ 2/ do you want special characters?
  
-  includeSpecialChars= confirm("ACCEPT: to add special characters to your password")
-  if (includeSpecialChars===true){
+  var text = "Include Special characters!\n Either OK or Cancel." 
+  if (confirm(text)===true){
     availableChars+=includeSpecialChars;
-    return;
-  }
+    }else{
+    text="you cancelled";
+          }
        //**/ 3/ do you want numbers?
+  var text = "Include Special Numbers!\n Either OK or Cancel." 
+  if (confirm(text)===true){
+    availableChars+=includeNumericChars;
+    }else{
+    text="you cancelled";
+          }
 
-  includeNumericChars= confirm("ACCEPT: to add numbers to your password")
-    if (includeNumericChars===true){
-      availableChars+= includeNumericChars;
-      return;
-    }
-
+  
       //**/ 4/ do you want upper
-      includeUppercaseChars= confirm("ACCEPT: to add uppercase characters to your password")
-      if (includeUppercaseChars===true){
-        availableChars+= includeUppercaseChars;
-        return;
-      }
+      var text = "Include Uppercase Letters!\n Either OK or Cancel." 
+  if (confirm(text)===true){
+    availableChars+=includeUppercaseChars;
+    }else{
+    text="you cancelled";
+          }
+
    //** */ 5/ lower case letters
-   includeLowercaseChars= confirm("ACCEPT: to add Lowercase characters to your password")
-   if (includeLowercaseChars===true){
-     availableChars+= includeLowercaseChars;
-     return;  
-    }
-    // ** */6/ generate password
+   var text = "Include Lowercase Letters!\n Either OK or Cancel." 
+   if (confirm(text)===true){
+     availableChars+=includeLowercaseChars;
+     }else{
+     text="you cancelled";
+           }
+   
+      // ** */6/ generate password
     for (i=0;i<userLength;i++){
       var randomIndex = Math.floor(Math.random()*availableChars.u);
         // create array that holds users preferences 
       password+=availableChars[randomIndex];
     }
     return password;
-   
+ 
 }
 generatePassword(password);    
 
