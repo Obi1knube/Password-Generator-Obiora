@@ -6,7 +6,7 @@ var includeNumericChars = "0123456789";
 var includeSpecialChars = "!@#$%^&*()_+~|}{[]:;?><./-,=";
 
 var password="";
-var availableChars="";
+var availableChars=[];
 
 // 1/ ask me what length password I want
     // use prompt to get password length
@@ -26,43 +26,47 @@ var availableChars="";
   if (confirm(text)===true){
     availableChars+=includeSpecialChars;
     }else{
-    text="you cancelled";
+      availableChars=availableChars;
           }
+          console.log(availableChars);
+        
        //**/ 3/ do you want numbers?
-  var text = "Include Special Numbers!\n Either OK or Cancel." 
+  var text = "Include Numbers!\n Either OK or Cancel." 
   if (confirm(text)===true){
     availableChars+=includeNumericChars;
     }else{
-    text="you cancelled";
-          }
+      availableChars=availableChars;
+    }
+    console.log(availableChars);
 
-  
-      //**/ 4/ do you want upper
+        //**/ 4/ do you want uppercase
       var text = "Include Uppercase Letters!\n Either OK or Cancel." 
   if (confirm(text)===true){
     availableChars+=includeUppercaseChars;
     }else{
-    text="you cancelled";
+    availableChars=availableChars;
           }
+          console.log(availableChars);
 
-   //** */ 5/ lower case letters
+   //** */ 5/ lowercase letters
    var text = "Include Lowercase Letters!\n Either OK or Cancel." 
    if (confirm(text)===true){
      availableChars+=includeLowercaseChars;
      }else{
-     text="you cancelled";
-           }
+     availableChars=availableChars;
+          }
+          console.log(availableChars);
    
       // ** */6/ generate password
-    for (i=0;i<userLength;i++){
+    for (i=0;i< availableChars.length;i++){
       var randomIndex = Math.floor(Math.random()*availableChars.u);
         // create array that holds users preferences 
-      password+=availableChars[randomIndex];
+      password+=userLength[randomIndex];
     }
     return password;
- 
+ console.log(password);
 }
-generatePassword(password);    
+ generatePassword();    
 
        // **7/ display it on html provided
   
@@ -74,9 +78,7 @@ generatePassword(password);
     var passwordText = document.querySelector("#password");
   
     passwordText.value = password;
-  
-  }
-  
-  // Add event listener to generate button
+    }
+    // Add event listener to generate button
   generateBtn.addEventListener("click", writePassword);
   
