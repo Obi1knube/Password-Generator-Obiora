@@ -58,15 +58,11 @@ var availableChars=[];
           console.log(availableChars);
    
       // ** */6/ generate password
-    for (i=0;i< availableChars.length;i++){
-      var randomIndex = Math.floor(Math.random()*availableChars.u);
+    
         // create array that holds users preferences 
-      password+=userLength[randomIndex];
+     
     }
-    return password;
- console.log(password);
-}
- generatePassword();    
+     
 
        // **7/ display it on html provided
   
